@@ -133,6 +133,7 @@ class ArticleController extends Controller
             $article = $this->findModel($id);
             $file = UploadedFile::getInstance($model,'image');
 
+            //var_dump(strtolower(md5(uniqid($file->baseName)). '.' . $file->extension));die;
 
             $article -> saveImage( $model->uploadFile($file));
         }
