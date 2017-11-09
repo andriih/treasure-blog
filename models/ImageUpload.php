@@ -9,15 +9,31 @@ use yii\web\UploadedFile;
 class ImageUpload extends Model
 {
     public $image;
-
-    public function uploadFile(UploadedFile $file)
+    
+    public function rules()
     {
-
-
-
-        $filename = strtolower(md5(uniqid($file->baseName)). '.' . $file->extension);
+        return
+        [
+              [['image'],'required'],
+        [['image'],'file','extensions' => 'jpg,png'],
+            
+        ];  
+    }
+    
+    public function uploadFile(UploadedFile $file,$currentImage)
+    {
+       $this->image = $file;
+       
+       
+       if(file_exists(Yii::getAlias('@web') . 'uploads/' . $currentImage))
+       {
+           unlink(Yii::getAlias('@web') . 'uploads/'. $currentImage);
+       }
+       
+       $filename = strtolower(md5(uniqid($file->baseName)). '.' . $file->extension);
+        
        $file->saveAs(Yii::getAlias('@web') . 'uploads/' . $filename);
 
-       return $file->name;
+       return $filename;
     }
 }
