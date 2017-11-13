@@ -20,6 +20,7 @@ use Yii;
  *
  * @property ArticleTag[] $articleTags
  * @property Comment[] $comments
+ * @property mixed category
  */
 class Article extends \yii\db\ActiveRecord
 {
@@ -90,5 +91,10 @@ class Article extends \yii\db\ActiveRecord
     public function beforeDelete() {
         $this->deleteImage();
         return parent::beforeDelete();
+    }
+
+    public function getCategory()
+    {
+        return $this->hasOne(Category::className(), ['id' => 'category_id']);
     }
 }

@@ -5,6 +5,7 @@ namespace app\modules\admin\controllers;
 use Yii;
 use app\models\Article;
 use app\models\ArticleSearch;
+use app\models\Category;
 use app\models\ImageUpload;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -143,5 +144,17 @@ class ArticleController extends Controller
         }
 
         return $this->render('image',['model'=>$model]);
+    }
+
+    /**
+     * @param $id
+     */
+    public function actionSetCategory($id)
+    {
+        $article = $this->findModel($id);
+
+        echo "<pre>";
+            var_dump($article->category->category_id);
+        echo "</pre>";
     }
 }
