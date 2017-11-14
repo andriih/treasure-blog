@@ -5,6 +5,7 @@ namespace app\modules\admin\controllers;
 use Yii;
 use app\models\Article;
 use app\models\ArticleSearch;
+use yii\helpers\ArrayHelper;
 use app\models\Category;
 use app\models\ImageUpload;
 use yii\web\Controller;
@@ -151,10 +152,27 @@ class ArticleController extends Controller
      */
     public function actionSetCategory($id)
     {
+        $category = Category::findOne(1);
+        var_dump($category->articles);die;
         $article = $this->findModel($id);
+        $selectedCategory = $article->category->id;
+        $categories =  ArrayHelper::map(Category::find()->all(),'id','title');
 
-        echo "<pre>";
-            var_dump($article->category->category_id);
-        echo "</pre>";
+        if(Yii::$app->request->isPost)
+        {
+            $category = Yii::$app->request->post('category');
+            
+            if( $article->saveCategory($category) )
+            {
+                return $this->redirect(['view','id'=>$article->id]);
+            }   
+        }
+
+        return $this->render('category',[
+            'article' => $article,
+            'selectedCategory' => $selectedCategory,
+            'categories' => $categories
+
+        ]);
     }
 }
