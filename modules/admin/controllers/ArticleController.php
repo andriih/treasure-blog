@@ -7,6 +7,7 @@ use app\models\Article;
 use app\models\ArticleSearch;
 use yii\helpers\ArrayHelper;
 use app\models\Category;
+use app\models\Tag;
 use app\models\ImageUpload;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -151,11 +152,11 @@ class ArticleController extends Controller
      * @param $id
      */
     public function actionSetCategory($id)
-    {
-        $category = Category::findOne(1);
-        var_dump($category->articles);die;
+    {   
         $article = $this->findModel($id);
+       
         $selectedCategory = $article->category->id;
+        
         $categories =  ArrayHelper::map(Category::find()->all(),'id','title');
 
         if(Yii::$app->request->isPost)
@@ -172,6 +173,30 @@ class ArticleController extends Controller
             'article' => $article,
             'selectedCategory' => $selectedCategory,
             'categories' => $categories
+
+        ]);
+    }
+
+    public function actionSetTags($id)
+    {
+        $article = $this->findModel($id);
+
+        $selectedTags = $article->getSelectedTags();
+    
+        $tags = ArrayHelper::map(Tag::find()->all(),'id','title');
+
+        if(Yii::$app->request->isPost)
+        {
+            $tags = Yii::$app->request->post('tags');
+
+            $article->saveTags($tags);
+            return $this->redirect(['view','id'=>$article->id]);
+        }
+
+        return $this->render('tags', 
+        [
+           'selectedTags' => $selectedTags,
+           'tags' => $tags
 
         ]);
     }
