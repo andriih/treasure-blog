@@ -1,4 +1,5 @@
 <?php  
+    use yii\helpers\Url;
     use yii\widgets\LinkPager;
  ?>
 <!--main content start-->
@@ -12,9 +13,9 @@
                    
                     <article class="post">
                     <div class="post-thumb">
-                        <a href="blog.html"><img src="<?= $article->getImage(); ?>" alt=""></a>
+                        <a href="<?= Url::toRoute(['site/view','id'=>$article->id]); ?>"><img src="<?= $article->getImage(); ?>" alt=""></a>
 
-                        <a href="blog.html" class="post-thumb-overlay text-center">
+                        <a href="<?= Url::toRoute(['site/view','id'=>$article->id]); ?>" class="post-thumb-overlay text-center">
                             <div class="text-uppercase text-center">View Post</div>
                         </a>
                     </div>
@@ -22,7 +23,7 @@
                         <header class="entry-header text-center text-uppercase">
                             <h6><a href="#"><?= $article->category->title; ?></a></h6>
 
-                            <h1 class="entry-title"><a href="blog.html"><?= $article->title; ?></a></h1>
+                            <h1 class="entry-title"><a href="<?= Url::toRoute(['site/view','id'=>$article->id]); ?>"><?= $article->title; ?></a></h1>
 
 
                         </header>
@@ -32,7 +33,7 @@
                             </p>
 
                             <div class="btn-continue-reading text-center text-uppercase">
-                                <a href="blog.html" class="more-link">Continue Reading</a>
+                                <a href="<?= Url::toRoute(['site/view','id'=>$article->id]); ?>" class="more-link">Continue Reading</a>
                             </div>
                         </div>
                         <div class="social-share">
