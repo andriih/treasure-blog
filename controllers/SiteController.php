@@ -2,6 +2,9 @@
 
 namespace app\controllers;
 
+
+use app\models\Article;
+use app\models\Category;
 use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
@@ -9,6 +12,10 @@ use yii\web\Response;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
+use yii\data\Pagination;
+
+
+
 
 class SiteController extends Controller
 {
@@ -61,7 +68,19 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
+
+        $data       =   Article::getAll(1);
+        $popular    =   Article::getPopular();
+        $recent     =   Article::getRecent();
+        $categories =   Category::getAll();
+
+        return $this->render('index',[
+            'articles'   => $data['articles'],
+            'pagination' => $data['pagination'],
+            'popular'    => $popular,
+            'recent'     => $recent,
+            'categories' => $categories
+        ]);
     }
 
     public function actionView()
