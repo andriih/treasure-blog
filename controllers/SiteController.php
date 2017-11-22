@@ -11,6 +11,7 @@ use yii\web\Controller;
 use yii\web\Response;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
+use app\models\SignupForm;
 use app\models\ContactForm;
 use yii\data\Pagination;
 use yii\helpers\Url;
@@ -103,7 +104,7 @@ class SiteController extends Controller
     {
         $data = Category::getArticlesByCategory($id);
         $popular = Article::getPopular();
-        $recent = Article::getRecent();
+        $recent     = Article::getRecent();
         $categories = Category::getAll();
 
         return $this->render('category',[
@@ -115,6 +116,7 @@ class SiteController extends Controller
         ]);
     }
 
+    
     /**
      * Login action.
      *
@@ -122,6 +124,7 @@ class SiteController extends Controller
      */
     public function actionLogin()
     {
+
         if (!Yii::$app->user->isGuest) {
             return $this->goHome();
         }
@@ -133,6 +136,13 @@ class SiteController extends Controller
         return $this->render('login', [
             'model' => $model,
         ]);
+    }
+
+    public function actionSignup()
+    {
+        $model = new SignupForm();
+
+        return $this->render('signup',['model'=>$model]);
     }
 
     /**
