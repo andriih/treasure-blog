@@ -1,22 +1,33 @@
-<?php 
-	namespace app\models;
+<?php
+namespace app\models;
+use yii\base\Model;
+use app\models\User;
 
-	use yii\base\Model;
+class SignupForm extends Model
+{
+    public $name;
+    public $email;
+    public $password;
+    
+    public function rules()
+    {
+        return [
+            [['name','email','password'], 'required'],
+            [['name'], 'string'],
+            [['email'], 'email'],
+            [['email'], 'unique', 'targetClass'=>'app\models\User', 'targetAttribute'=>'email']
+        ];
+    }
 
-	class SignupForm extends Model
-	{
-		public $name;
-		public $email;
-		public $password;
+    public function signup()
+    {
+    	if( $this->validate())
+    	{
+    		$user = new User();
 
-		public function rules()
-		{
-			return [
-				[['name','email','password'], 'required'],
-				[['name'], 'string'],
-				[['email'],'email'],
-				[['email'], 'unique','targeClass'=>'app\models\User','targetAttribute'=>'email']
-			];
-		}
+    		$user->attributes = $this->attributes;
 
-	}
+    		return $user->create();
+    	}
+    }
+}

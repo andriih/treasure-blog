@@ -122,28 +122,28 @@ class SiteController extends Controller
      *
      * @return Response|string
      */
-    public function actionLogin()
-    {
+    // public function actionLogin()
+    // {
 
-        if (!Yii::$app->user->isGuest) {
-            return $this->goHome();
-        }
+    //     if (!Yii::$app->user->isGuest) {
+    //         return $this->goHome();
+    //     }
 
-        $model = new LoginForm();
-        if ($model->load(Yii::$app->request->post()) && $model->login()) {
-            return $this->goBack();
-        }
-        return $this->render('login', [
-            'model' => $model,
-        ]);
-    }
+    //     $model = new LoginForm();
+    //     if ($model->load(Yii::$app->request->post()) && $model->login()) {
+    //         return $this->goBack();
+    //     }
+    //     return $this->render('login', [
+    //         'model' => $model,
+    //     ]);
+    // }
 
-    public function actionSignup()
-    {
-        $model = new SignupForm();
+    // public function actionSignup()
+    // {
+    //     $model = new SignupForm();
 
-        return $this->render('signup',['model'=>$model]);
-    }
+    //     return $this->render('signup',['model'=>$model]);
+    // }
 
     /**
      * Logout action.
