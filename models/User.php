@@ -14,6 +14,7 @@ use yii\web\IdentityInterface;
  * @property int $isAdmin
  * @property string $photo
  *
+ * @property Auth[] $auths
  * @property Comment[] $comments
  */
 class User extends \yii\db\ActiveRecord implements IdentityInterface
@@ -51,7 +52,15 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
             'photo' => 'Photo',
         ];
     }
-
+    
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getAuths()
+    {
+        return $this->hasMany(Auth::className(), ['user_id' => 'id']);
+    }
+    
     /**
      * @return \yii\db\ActiveQuery
      */

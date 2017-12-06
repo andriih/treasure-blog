@@ -50,6 +50,10 @@ class AuthController extends Controller
         return $this->goHome();
     }
 
+    public function actionAuthLoginFb($first_name,$id,$cover)
+    {
+        var_dump($first_name,$id,$cover);die;
+    }
 
     public function actionTest()
     {
