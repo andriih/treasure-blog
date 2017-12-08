@@ -112,4 +112,27 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
     {
         return $this->save(false);
     }
+    
+    public function saveFromFb($email, $id , $username, $photo)
+    {
+        $user = User::findIdentity((int)$id);
+        
+        //var_dump($user) ;die;
+        
+        if($user)
+        {
+            return Yii::$app->user->login($user);
+        }
+        else
+        {
+            $this->id = $id;
+            $this->name = $username;
+            $this->photo = $photo;
+            $this->email = $email;
+
+            $this->create();
+
+            return Yii::$app->user->login($this);
+        }
+    }
 }

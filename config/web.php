@@ -13,17 +13,17 @@ $config = [
     ],
     'components' => [
 
-        'authClientCollection' => [
-            'class' => 'yii\authclient\Collection',
-            'clients' => [
-                'facebook' => [
-                    'class' => 'yii\authclient\clients\Facebook',
-                    'clientId' => '1818892128184744',
-                    'clientSecret' => '8537ab1af9a98b5b1f5a0fc4851e10bb',
-                ],
-                // etc.
-            ],
-        ],
+//        'authClientCollection' => [
+//            'class' => 'yii\authclient\Collection',
+//            'clients' => [
+//                'facebook' => [
+//                    'class' => 'yii\authclient\clients\Facebook',
+//                    'clientId' => '1818892128184744',
+//                    'clientSecret' => '8537ab1af9a98b5b1f5a0fc4851e10bb',
+//                ],
+//                // etc.
+//            ],
+//        ],
         // ...
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
@@ -47,8 +47,7 @@ $config = [
                 'authUrl' => 'https://www.facebook.com/dialog/oauth?display=popup',
                 'clientId' => '1818892128184744',
                 'clientSecret' => '8537ab1af9a98b5b1f5a0fc4851e10bb',
-                'attributeNames' => ['first_name','id','cover'],
-                'returnUrl' => 'app\models\controllers\AuthController\actionAuthLoginFb',
+                'attributeNames' => ['name','id','cover','email'],
               ],
             ],
           ],
