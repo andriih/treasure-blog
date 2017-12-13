@@ -113,7 +113,7 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
         return $this->save(false);
     }
     
-    public function saveFromFb($email, $id , $username, $photo)
+    public function saveFromFb($email, $id , $name, $photo)
     {
         $user = User::findIdentity((int)$id);
         
@@ -126,7 +126,7 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
         else
         {
             $this->id = $id;
-            $this->name = $username;
+            $this->name = $name;
             $this->photo = $photo;
             $this->email = $email;
 
