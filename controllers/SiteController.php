@@ -16,6 +16,7 @@ use app\models\ContactForm;
 use yii\data\Pagination;
 use yii\helpers\Url;
 
+
 use app\components\AuthHandler;
 
 
@@ -86,13 +87,17 @@ class SiteController extends Controller
         $popular    =   Article::getPopular();
         $recent     =   Article::getRecent();
         $categories =   Category::getAll();
+        $comments = $article->comments;
+        $commentForm = new CommentForm();
 
         return $this->render('index',[
             'articles'   => $data['articles'],
             'pagination' => $data['pagination'],
             'popular'    => $popular,
             'recent'     => $recent,
-            'categories' => $categories
+            'categories' => $categories,
+            'comments'   => $comments,
+            'commentForm' => $commentForm
         ]);
     }
 

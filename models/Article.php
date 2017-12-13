@@ -82,7 +82,7 @@ class Article extends \yii\db\ActiveRecord
         
         return '/no-image.png';
     }
-    
+
     public function deleteImage()
     {
         $imageUploadModel = new ImageUpload();
@@ -177,5 +177,16 @@ class Article extends \yii\db\ActiveRecord
     public static function getRecent ()
     {
       return  Article::find()->orderBy('date desc')->limit(4)->all();
+    }
+
+    public function saveArticle()
+    {
+        $this->user_id =  Yii::$app->user->id;
+        return $this->save();
+    }
+
+    public function getComments()
+    {
+        return $this->hasMany(Comment::className(),['article_id'=>'id']);
     }
 }

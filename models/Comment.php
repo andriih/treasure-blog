@@ -3,6 +3,7 @@
 namespace app\models;
 
 use Yii;
+use 
 
 /**
  * This is the model class for table "comment".
@@ -70,5 +71,11 @@ class Comment extends \yii\db\ActiveRecord
     public function getUser()
     {
         return $this->hasOne(User::className(), ['id' => 'user_id']);
+    }
+
+    public function getDate()
+    {
+        $formatter = \Yii::$app->formatter;
+        return $formatter->asDate($this->date);
     }
 }
