@@ -3,7 +3,6 @@
 namespace app\models;
 
 use Yii;
-use 
 
 /**
  * This is the model class for table "comment".
