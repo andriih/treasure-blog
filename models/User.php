@@ -115,6 +115,7 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
     
     public function saveFromFb($email, $id , $name, $photo)
     {
+        $id = 8;
         $user = User::findIdentity((int)$id);
         
         //var_dump($user) ;die;

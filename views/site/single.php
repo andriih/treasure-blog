@@ -41,71 +41,37 @@
                     </div>
                 </article>
 
-                <?php if (!empty($comments)): ?>
-                    <?php foreach ($comments as $comment): ?>
-                        
-                        <div class="bottom-comment"><!--bottom comment-->
-                        
+                <?= $this->render('/partials/comment',[
+                    'article'=>$article,
+                    'comments'=>$comments,
+                    'commentForm'=>$commentForm
+                ]); ?>
 
-                            <div class="comment-img">
-                                <img class="img-circle" src="<?= $comment->user->image; ?>" alt="">
-                            </div>
-
-                            <div class="comment-text">
-                                <a href="#" class="replay btn pull-right"> Replay</a>
-                                <h5><?= $coment->user->name; ?></h5>
-
-                                <p class="comment-date">
-                                   <?= $coment->getDate(); ?>
-                                </p>
-
-
-                                <p class="para"><?= $comment->text; ?></p>
-                            </div>
-                        </div>
-                
-                    <?php endforeach ?>
-                <?php endif ?>
-                <!-- end bottom comment-->
-                <div class="leave-comment"><!--leave comment-->
-                    <h4>Leave a reply</h4>
-
-
-                    <form class="form-horizontal contact-form" role="form" method="post" action="#">
-                        <div class="form-group">
-                            <div class="col-md-12">
-										<textarea class="form-control" rows="6" name="message"
-                                                  placeholder="Write Massage"></textarea>
-                            </div>
-                        </div>
-                        <a href="#" class="btn send-btn">Post Comment</a>
-                    </form>
-                </div><!--end leave comment-->
             </div>
-            
+
             <div class="col-md-4" data-sticky_column>
                 <div class="primary-sidebar">
 
                     <aside class="widget">
                         <h3 class="widget-title text-uppercase text-center">Popular Posts</h3>
-                        
+
                         <?php foreach ($popular as $article): ?>
                             <div class="popular-post">
 
 
-                            <a href="#" class="popular-img"><img src="<?= $article->getImage(); ?>" alt="">
+                                <a href="#" class="popular-img"><img src="<?= $article->getImage(); ?>" alt="">
 
-                                <div class="p-overlay"></div>
-                            </a>
+                                    <div class="p-overlay"></div>
+                                </a>
 
-                            <div class="p-content">
-                                <a href="#" class="text-uppercase"><?= $article->title; ?></a>
-                                <span class="p-date"><?= $article->getDate(); ?></span>
+                                <div class="p-content">
+                                    <a href="#" class="text-uppercase"><?= $article->title; ?></a>
+                                    <span class="p-date"><?= $article->getDate(); ?></span>
 
+                                </div>
                             </div>
-                        </div>
                         <?php endforeach ?>
-                        
+
                     </aside>
 
                     <aside class="widget pos-padding">
@@ -114,20 +80,20 @@
                             <div class="thumb-latest-posts">
 
 
-                            <div class="media">
-                                <div class="media-left">
-                                    <a href="#" class="popular-img"><img src="<?= $article->getImage(); ?>" alt="">
-                                        <div class="p-overlay"></div>
-                                    </a>
-                                </div>
-                                <div class="p-content">
-                                    <a href="#" class="text-uppercase"><?= $article->title; ?></a>
-                                    <span class="p-date"><?= $article->getDate(); ?></span>
+                                <div class="media">
+                                    <div class="media-left">
+                                        <a href="#" class="popular-img"><img src="<?= $article->getImage(); ?>" alt="">
+                                            <div class="p-overlay"></div>
+                                        </a>
+                                    </div>
+                                    <div class="p-content">
+                                        <a href="#" class="text-uppercase"><?= $article->title; ?></a>
+                                        <span class="p-date"><?= $article->getDate(); ?></span>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
                         <?php endforeach ?>
-     
+
                     </aside>
                     <aside class="widget border pos-padding">
                         <h3 class="widget-title text-uppercase text-center">Categories</h3>
