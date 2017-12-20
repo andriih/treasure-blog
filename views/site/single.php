@@ -29,7 +29,7 @@
 
                         <div class="social-share">
 							<span
-                                    class="social-share-title pull-left text-capitalize">By Rubel <?= $article->getDate(); ?></span>
+                                    class="social-share-title pull-left text-capitalize"><?= $article->author->name?> On <?= $article->getDate(); ?></span>
                             <ul class="text-center pull-right">
                                 <li><a class="s-facebook" href="#"><i class="fa fa-facebook"></i></a></li>
                                 <li><a class="s-twitter" href="#"><i class="fa fa-twitter"></i></a></li>
